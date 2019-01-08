@@ -1,13 +1,13 @@
 # Site settings
-title: BY Blog
-SEOTitle: 柏荧的博客 | BY Blog
+title: 如是我闻
+SEOTitle: 沐杰的文章 | HarryLIU.CN
 header-img: img/post-bg-desk.jpg
-email: qiubaiying@gmail.com
-description: "Every failure is leading towards success."
-keyword: "BY, BY Blog, 柏荧的博客, qiubaiying, 邱柏荧, iOS, Apple, iPhone"
-url: "http://qiubaiying.github.io"          # your host, for absolute URL
+email: harryfhliu@163.com
+description: "巧言令色鲜仁矣"
+keyword: "沐杰, harryfhliu, 刘富华, 地热, 小说, 敦煌遗影"
+url: "http://harryliu.cn"          # your host, for absolute URL
 baseurl: ""      # for example, '/blog' if your blog hosted on 'host/blog'
-github_repo: "https://github.com/qiubaiying/qiubaiying.github.io.git" # you code repository
+github_repo: "https://github.com/harryfhliu/harryfhliu.github.io.git" # you code repository
 
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
@@ -18,12 +18,12 @@ sidebar-avatar: /img/about-BY-gentle.jpg      # use absolute URL, seeing it's us
 
 # SNS settings
 RSS: false
-# weibo_username:     qiubaiying
-zhihu_username:     qiubaiying
-github_username:    qiubaiying
-facebook_username:  baiying.qiu.7
-jianshu_username:   e71990ada2fd
-#twitter_username:   qiubaiying
+weibo_username:     harryfhliu
+zhihu_username:     harryfhliu
+github_username:    harryfhliu
+facebook_username:  harryfhliu
+jianshu_username:   a188c2bce504
+twitter_username:   harryfhliu
 
 
 
@@ -57,16 +57,16 @@ kramdown:
 
 # 评论系统
 # Disqus（https://disqus.com/）
-# disqus_username: qiubaiying
+# disqus_username: harryfhliu
 
 # Gitalk
 gitalk:
   enable: true    #是否开启Gitalk评论
-  clientID: f2c84e7629bb1446c1a4                            #生成的clientID
-  clientSecret: ca6d6139d1e1b8c43f8b2e19492ddcac8b322d0d    #生成的clientSecret
-  repo: qiubaiying.github.io    #仓库名称
-  owner: qiubaiying    #github用户名
-  admin: qiubaiying
+  clientID: 61a14eeff60953377982                            #生成的clientID
+  clientSecret: 0b0675a20a85b45b203ee7e0099d38432076eb04    #生成的clientSecret
+  repo: harryfhliu.github.io    #仓库名称
+  owner: harryfhliu    #github用户名
+  admin: harryfhliu
   distractionFreeMode: true #是否启用类似FB的阴影遮罩
 
 
@@ -78,7 +78,7 @@ ba_track_id: b50bf2b12b5338a1845e33832976fd68
 
 # Google Analytics
 ga_track_id: 'UA-90855596-1'            # Format: UA-xxxxxx-xx
-ga_domain: qiubaiying.top               # 默认的是 auto, 这里我是自定义了的域名，你如果没有自己的域名，需要改成auto
+ga_domain: harryfhliu.cn                # 默认的是 auto, 这里我是自定义了的域名，你如果没有自己的域名，需要改成auto
 
 
 
@@ -86,7 +86,7 @@ ga_domain: qiubaiying.top               # 默认的是 auto, 这里我是自定�
 
 # Featured Tags
 featured-tags: true                     # 是否使用首页标签
-featured-condition-size: 1              # 相同标签数量大于这个数，才会出现在首页
+featured-condition-size: 5              # 相同标签数量大于这个数，才会出现在首页
 
 
 
@@ -103,7 +103,7 @@ friends: [
         href: "http://zhengwuyang.com"
     },{
         title: "简书·BY",
-        href: "http://www.jianshu.com/u/e71990ada2fd"
+        href: "http://www.jianshu.com/u/a188c2bce504"
     },{
         title: "Apple",
         href: "https://apple.com"
