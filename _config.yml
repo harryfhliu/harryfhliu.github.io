@@ -1,4 +1,4 @@
-# Site settings
+﻿# Site settings
 title: 如是我闻 | HarryLIU.CN
 SEOTitle: 沐杰的文章 | HarryLIU.CN
 header-img: img/post-bg-desk.jpg
@@ -37,9 +37,9 @@ anchorjs: true                          # if you want to customize anchor. check
 
 
 
-# Gems
+# Plugins
 # from PR#40, to support local preview for Jekyll 3.0
-gems: [jekyll-paginate]
+plugins: [jekyll-paginate]
 
 
 
