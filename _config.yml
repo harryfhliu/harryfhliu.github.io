@@ -99,14 +99,20 @@ service-worker: true
 # Friends
 friends: [
     {
-        title: "WY",
-        href: "http://zhengwuyang.com"
+        title: "IGA",
+        href: "https://www.geothermal-energy.org/"
     },{
-        title: "简书·BY",
-        href: "http://www.jianshu.com/u/a188c2bce504"
+        title: "REW",
+        href: "https://www.renewableenergyworld.com/index.html"
     },{
-        title: "Apple",
-        href: "https://apple.com"
+        title: "GRC",
+        href: "https://geothermal.org/home.html"
+    },{
+        title: "NEA",
+        href: "https://nea.is/"
+    },{
+        title: "DOE",
+        href: "https://www.energy.gov/"
     }
 ]
 
