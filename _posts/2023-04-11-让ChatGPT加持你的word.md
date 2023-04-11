@@ -38,4 +38,7 @@ wget https://word-gpt-filippofinke.vercel.app/manifest.xml -O wordgpt.xml
 
 启动后在”插入“-”加载项“里面点一下wordGPT，在”开始“页面就出现这个边栏助手了，一定程度上可以辅助写作。
 
+大概是这个样子，工具栏右边多个了白色的机器人：
 ![标题](https://raw.githubusercontent.com/harryfhliu/picbed/master/img/202304112048033.png)
+
+第一次使用的时候需要填入你openai账号的api哦。
