@@ -27,7 +27,7 @@ MacOS的安装方式如下：
 先关闭word；
 
 在终端输入如下代码：
-```
+```bash
 cd ~/Library/Containers/com.microsoft.Word/Data/Documents/wef
 wget https://word-gpt-filippofinke.vercel.app/manifest.xml -O wordgpt.xml
 ```
