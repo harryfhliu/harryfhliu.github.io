@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 Complete Calendar</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { max-width: 1400px; margin: 0 auto; }
+        .header {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .header h1 { font-size: 48px; margin-bottom: 10px; color: #2c3e50; }
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        .month-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            page-break-inside: avoid;
+            break-inside: avoid;
+        }
+        .month-header {
+            padding: 15px;
+            color: white;
+            text-align: center;
+        }
+        .month-name { font-size: 24px; font-weight: bold; }
+        .month-slogan { font-size: 12px; font-style: italic; margin-top: 5px; opacity: 0.9; }
+        .calendar-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .calendar-table th {
+            background: #f0f0f0;
+            padding: 8px;
+            font-size: 12px;
+            color: #666;
+        }
+        .calendar-table td {
+            padding: 12px;
+            text-align: center;
+            font-size: 14px;
+            border: 1px solid #eee;
+            height: 50px;
+            vertical-align: top;
+        }
+        .calendar-table td:hover { background: #f9f9f9; }
+        .holiday { 
+            background: #ffebee !important; 
+            color: #c62828; 
+            font-weight: bold;
+            border-radius: 50%;
+        }
+        .school-event {
+            background: #e3f2fd !important;
+            color: #1565c0;
+            font-weight: bold;
+        }
+        .weekend {
+            background: #fff8e1 !important;
+            color: #e65100;
+        }
+        .baseball-event {
+            background: #e8f5e9 !important;
+            color: #2e7d32;
+            font-weight: bold;
+            border: 1px solid #4caf50;
+        }
+        .other-month { color: #ccc; }
+        .jan { background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); }
+        .feb { background: linear-gradient(135deg, #8e44ad 0%, #9b59b6 100%); }
+        .mar { background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%); }
+        .apr { background: linear-gradient(135deg, #f39c12 0%, #f1c40f 100%); }
+        .may { background: linear-gradient(135deg, #e74c3c 0%, #ec7063 100%); }
+        .jun { background: linear-gradient(135deg, #3498db 0%, #5dade2 100%); }
+        .jul { background: linear-gradient(135deg, #e67e22 0%, #f39c12 100%); }
+        .aug { background: linear-gradient(135deg, #16a085 0%, #1abc9c 100%); }
+        .sep { background: linear-gradient(135deg, #d35400 0%, #e67e22 100%); }
+        .oct { background: linear-gradient(135deg, #c0392b 0%, #e74c3c 100%); }
+        .nov { background: linear-gradient(135deg, #8e44ad 0%, #bb8fce 100%); }
+        .dec { background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%); }
+        .legend {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .legend-box {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+        }
+        .holiday-legend { background: #ffebee; border: 2px solid #c62828; }
+        .school-legend { background: #e3f2fd; border: 2px solid #1565c0; }
+        .weekend-legend { background: #fff8e1; border: 2px solid #e65100; }
+        .baseball-legend { background: #e8f5e9; border: 2px solid #2e7d32; }
+        @media (max-width: 1200px) {
+            .calendar-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 768px) {
+            .calendar-grid { grid-template-columns: 1fr; }
+        }
+        @media print {
+            body { background: white; padding: 0; }
+            .container { max-width: 100%; }
+            .header { box-shadow: none; border-bottom: 2px solid #ddd; }
+            .month-card { box-shadow: none; border: 1px solid #ddd; }
+            .legend { box-shadow: none; border: 1px solid #ddd; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>2026 Calendar</h1>
+            <p>A Year of Growth and Learning</p>
+            <p style="font-size: 16px; margin-top: 10px; opacity: 0.9;">高新区实验小学 五（8）班 刘润鳞Max</p>
+        </div>
+        
+        <div class="calendar-grid">
+            <!-- January -->
+            <div class="month-card">
+                <div class="month-header jan">
+                    <div class="month-name">January</div>
+                    <div class="month-slogan">"New beginnings, endless possibilities"</div>
+                </div>
+                <table class="calendar-table">
+                    <tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr>
+                    <tr><td class="other-month weekend">28</td><td class="other-month">29</td><td class="other-month">30</td><td class="other-month">31</td><td>1</td><td>2</td><td class="weekend">3</td></tr>
+                    <tr><td class="weekend">4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td class="weekend">10</td></tr>
+                    <tr><td class="weekend">11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td class="weekend">17</td></tr>
+                    <tr><td class="weekend">18</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td class="weekend">24</td></tr>
+                    <tr><td class="weekend">25</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td class="weekend">31</td></tr>
+                </table>
+                <div style="padding: 10px; font-size: 12px;">
+                    <strong>Jan 1:</strong> <span class="holiday" style="padding: 2px 6px; border-radius: 3px;">New Year's Day</span>
+                </div>
+            </div>
+
+            <!-- February -->
+            <div class="month-card">
+                <div class="month-header feb">
+                    <div class="month-name">February</div>
+                    <div class="month-slogan">"Love what you do, do what you love"</div>
+                </div>
+                <table class="calendar-table">
+                    <tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr>
+                    <tr><td class="weekend">1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td class="weekend">7</td></tr>
+                    <tr><td class="weekend">8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td class="weekend">14</td></tr>
+                    <tr><td class="weekend">15</td><td>16</td><td class="holiday">17</td><td>18</td><td>19</td><td>20</td><td class="weekend">21</td></tr>
+                    <tr><td class="weekend">22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td><td class="weekend">28</td></tr>
+                </table>
+                <div style="padding: 10px; font-size: 12px;">
+                    <strong>Feb 17:</strong> <span class="holiday" style="padding: 2px 6px; border-radius: 3px;">Presidents' Day</span><br>
+                    <strong>All Month:</strong> <span class="school-event" style="padding: 2px 6px; border-radius: 3px;">Winter Vacation</span>
+                </div>
+            </div>
+
+            <!-- March -->
+            <div class="month-card">
+                <div class="month-header mar">
+                    <div class="month-name">March</div>
+                    <div class="month-slogan">"Bloom where you are planted"</div>
+                </div>
+                <table class="calendar-table">
+                    <tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr>
+                    <tr><td class="weekend">1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td class="weekend">7</td></tr>
+                    <tr><td class="holiday weekend">8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td class="weekend">14</td></tr>
+                    <tr><td class="weekend">15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td class="weekend">21</td></tr>
+                    <tr><td class="weekend">22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td><td class="weekend">28</td></tr>
+                    <tr><td class="weekend">29</td><td>30</td><td>31</td><td class="other-month">1</td><td class="other-month">2</td><td class="other-month">3</td><td class="other-month weekend">4</td></tr>
+                </table>
+                <div style="padding: 10px; font-size: 12px;">
+                    <strong>Mar 8:</strong> <span class="holiday" style="padding: 2px 6px; border-radius: 3px;">Women's Day</span><br>
+                    <strong>Mar:</strong> <span class="school-event" style="padding: 2px 6px; border-radius: 3px;">Flower Festival</span><br>
+                    <strong>Mar:</strong> <span class="baseball-event" style="padding: 2px 6px; border-radius: 3px;">MLB CUP Spring - Chengdu</span>
+                </div>
+            </div>
+
+            <!-- April -->
+            <div class="month-card">
+                <div class="month-header apr">
+                    <div class="month-name">April</div>
+                    <div class="month-slogan">"April showers bring May flowers"</div>
+                </div>
+                <table class="calendar-table">
+                    <tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr>
+                    <tr><td class="other-month weekend">29</td><td class="other-month">30</td><td class="other-month">31</td><td>1</td><td>2</td><td>3</td><td class="weekend">4</td></tr>
+                    <tr><td class="holiday weekend">5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td class="weekend">11</td></tr>
+                    <tr><td class="holiday weekend">12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td class="weekend">18</td></tr>
+                    <tr><td class="weekend">19</td><td>20</td><td>21</td><td class="holiday">22</td><td>23</td><td>24</td><td class="weekend">25</td></tr>
+                    <tr><td class="weekend">26</td><td>27</td><td>28</td><td>29</td><td>30</td><td class="other-month">1</td><td class="other-month weekend">2</td></tr>
+                </table>
+                <div style="padding: 10px; font-size: 12px;">
+                    <strong>Apr 1:</strong> <span class="holiday" style="padding: 2px 6px; border-radius: 3px;">April Fools' Day</span><br>
+                    <strong>Apr 5:</strong> <span class="holiday" style="padding: 2px 6px; border-radius: 3px;">Qingming Festival</span><br>
+                    <strong>Apr 12:</strong> <span class="holiday" style="padding: 2px 6px; border-radius: 3px;">Easter Sunday</span><br>
+                    <strong>Apr:</strong> <span class="school-event" style="padding: 2px 6px; border-radius: 3px;">Sports Meet, Maths & Science Festival</span><br>
+                    <strong>Apr-Jul:</strong> <span class="baseball-event" style="padding: 2px 6px; border-radius: 3px;">Shaanxi Primary & Secondary School Baseball & Softball League</span>
+                </div>
+            </div>
+
+            <!-- May -->
+            <div class="month-card">
+                <div class="month-header may">
+                    <div class="month-name">May</div>
+                    <div class="month-slogan">"The future belongs to believers"</div>
+                </div>
+                <table class="calendar-table">
+                    <tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr>
+                    <tr><td class="other-month weekend">26</td><td class="other-month">27</td><td class="other-month">28</td><td class="other-month">29</td><td class="other-month">30</td><td class="holiday">1</td><td class="weekend">2</td></tr>
+                    <tr><td class="weekend">3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td class="weekend">9</td></tr>
+                    <tr><td class="holiday weekend">10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td class="weekend">16</td></tr>
+                    <tr><td class="weekend">17</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td class="weekend">23</td></tr>
+                    <tr><td class="weekend">24</td><td>25</td><td>26</td><td>27</td><td>28</td><td>29</td><td class="weekend">30</td></tr>
+                    <tr><td class="weekend">31</td><td class="other-month">1</td><td class="other-month">2</td><td class="other-month">3</td><td class="other-month">4</td><td class="other-month">5</td><td class="other-month weekend">6</td></tr>
+                </table>
+                <div style="padding: 10px; font-size: 12px;">
+                    <strong>May 1:</strong> <span class="holiday" style="padding: 2px 6px; border-radius: 3px;">Labor Day</span><br>
+                    <strong>May 10:</strong> <span class="holiday" style="padding: 2px 6px; border-radius: 3px;">Mother's Day</span><br>
+                    <strong>May:</strong> <span class="school-event" style="padding: 2px 6px; border-radius: 3px;">Boqu English Festival</span><br>
+                    <strong>May:</strong> <span class="baseball-event" style="padding: 2px 6px; border-radius: 3px;">MLB CUP Spring - Xi'an</span><br>
+                    <strong>Apr-Jul:</strong> <span class="baseball-event" style="padding: 2px 6px; border-radius: 3px;">Shaanxi Primary & Secondary School Baseball & Softball League</span>
+                </div>
+            </div>
+
+            <!-- June -->
+            <div class="month-card">
+                <div class="month-header jun">
+                    <div class="month-name">June</div>
+                    <div class="month-slogan">"Adventure awaits, go find it"</div>
+                </div>
+                <table class="calendar-table">
+                    <tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr>
+                    <tr><td class="other-month weekend">31</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td class="weekend">6</td></tr>
+                    <tr><td class="weekend">7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td class="weekend">13</td></tr>
+                    <tr><td class="weekend">14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td class="weekend">20</td></tr>
+                    <tr><td class="holiday weekend">21</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td class="weekend">27</td></tr>
+                    <tr><td class="weekend">28</td><td>29</td><td>30</td><td class="other-month">1</td><td class="other-month">2</td><td class="other-month">3</td><td class="other-month weekend">4</td></tr>
+                </table>
+                <div style="padding: 10px; font-size: 12px;">
+                    <strong>Jun 1:</strong> <span class="holiday" style="padding: 2px 6px; border-radius: 3px;">Children's Day</span><br>
+                    <strong>Jun 21:</strong> <span class="holiday" style="padding: 2px 6px; border-radius: 3px;">Father's Day & Summer Solstice</span><br>
+                    <strong>Jun:</strong> <span class="baseball-event" style="padding: 2px 6px; border-radius: 3px;">National Youth Baseball Championship - Xi'an</span><br>
+                    <strong>Apr-Jul:</strong> <span class="baseball-event" style="padding: 2px 6px; border-radius: 3px;">Shaanxi Primary & Secondary School Baseball & Softball League</span>
+                </div>
+            </div>
+
+            <!-- July -->
+            <div class="month-card">
+                <div class="month-header jul">
+                    <div class="month-name">July</div>
+                    <div class="month-slogan">"Sunshine and good times"</div>
+                </div>
+                <table class="calendar-table">
+                    <tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr>
+                    <tr><td class="other-month weekend">28</td><td class="other-month">29</td><td class="other-month">30</td><td>1</td><td>2</td><td>3</td><td class="holiday weekend">4</td></tr>
+                    <tr><td class="weekend">5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td class="weekend">11</td></tr>
+                    <tr><td class="weekend">12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td class="weekend">18</td></tr>
+                    <tr><td class="weekend">19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td><td class="weekend">25</td></tr>
+                    <tr><td class="weekend">26</td><td>27</td><td>28</td><td>29</td><td>30</td><td>31</td><td class="other-month weekend">1</td></tr>
+                </table>
+                <div style="padding: 10px; font-size: 12px;">
+                    <strong>Jul 4:</strong> <span class="holiday" style="padding: 2px 6px; border-radius: 3px;">Independence Day</span><br>
+                    <strong>All Month:</strong> <span class="school-event" style="padding: 2px 6px; border-radius: 3px;">Summer Vacation</span><br>
+                    <strong>Jul:</strong> <span class="baseball-event" style="padding: 2px 6px; border-radius: 3px;">National Youth Baseball Championship</span><br>
+                    <strong>Apr-Jul:</strong> <span class="baseball-event" style="padding: 2px 6px; border-radius: 3px;">Shaanxi Primary & Secondary School Baseball & Softball League</span>
+                </div>
+            </div>
+
+            <!-- August -->
+            <div class="month-card">
+                <div class="month-header aug">
+                    <div class="month-name">August</div>
+                    <div class="month-slogan">"Make every day count"</div>
+                </div>
+                <table class="calendar-table">
+                    <tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr>
+                    <tr><td class="other-month weekend">26</td><td class="other-month">27</td><td class="other-month">28</td><td class="other-month">29</td><td class="other-month">30</td><td class="other-month">31</td><td class="weekend">1</td></tr>
+                    <tr><td class="weekend">2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td class="weekend">8</td></tr>
+                    <tr><td class="weekend">9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td class="weekend">15</td></tr>
+                    <tr><td class="weekend">16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td><td class="weekend">22</td></tr>
+                    <tr><td class="weekend">23</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td><td class="weekend">29</td></tr>
+                    <tr><td class="weekend">30</td><td>31</td><td class="other-month">1</td><td class="other-month">2</td><td class="other-month">3</td><td class="other-month">4</td><td class="other-month weekend">5</td></tr>
+                </table>
+                <div style="padding: 10px; font-size: 12px;">
+                    <strong>All Month:</strong> <span class="school-event" style="padding: 2px 6px; border-radius: 3px;">Summer Vacation</span><br>
+                    <strong>Aug:</strong> <span class="baseball-event" style="padding: 2px 6px; border-radius: 3px;">MLB CUP Championship Finals</span>
+                </div>
+            </div>
+
+            <!-- September -->
+            <div class="month-card">
+                <div class="month-header sep">
+                    <div class="month-name">September</div>
+                    <div class="month-slogan">"New beginnings, fresh starts"</div>
+                </div>
+                <table class="calendar-table">
+                    <tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr>
+                    <tr><td class="other-month weekend">30</td><td class="other-month">31</td><td>1</td><td>2</td><td>3</td><td>4</td><td class="weekend">5</td></tr>
+                    <tr><td class="weekend">6</td><td class="holiday">7</td><td>8</td><td>9</td><td>10</td><td>11</td><td class="weekend">12</td></tr>
+                    <tr><td class="weekend">13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td class="weekend">19</td></tr>
+                    <tr><td class="weekend">20</td><td>21</td><td>22</td><td class="holiday">23</td><td>24</td><td>25</td><td class="weekend">26</td></tr>
+                    <tr><td class="weekend">27</td><td>28</td><td>29</td><td>30</td><td class="other-month">1</td><td class="other-month">2</td><td class="other-month weekend">3</td></tr>
+                </table>
+                <div style="padding: 10px; font-size: 12px;">
+                    <strong>Sep 7:</strong> <span class="holiday" style="padding: 2px 6px; border-radius: 3px;">Labor Day (USA)</span><br>
+                    <strong>Sep 23:</strong> <span class="holiday" style="padding: 2px 6px; border-radius: 3px;">Autumn Equinox</span><br>
+                    <strong>Sep:</strong> <span class="school-event" style="padding: 2px 6px; border-radius: 3px;">Mid-Autumn Festival</span>
+                </div>
+            </div>
+
+            <!-- October -->
+            <div class="month-card">
+                <div class="month-header oct">
+                    <div class="month-name">October</div>
+                    <div class="month-slogan">"Fall in love with learning"</div>
+                </div>
+                <table class="calendar-table">
+                    <tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr>
+                    <tr><td class="other-month weekend">27</td><td class="other-month">28</td><td class="other-month">29</td><td class="other-month">30</td><td>1</td><td>2</td><td class="weekend">3</td></tr>
+                    <tr><td class="weekend">4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td class="weekend">10</td></tr>
+                    <tr><td class="weekend">11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td class="weekend">17</td></tr>
+                    <tr><td class="weekend">18</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td class="weekend">24</td></tr>
+                    <tr><td class="weekend">25</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td class="holiday weekend">31</td></tr>
+                </table>
+                <div style="padding: 10px; font-size: 12px;">
+                    <strong>Oct 1:</strong> <span class="holiday" style="padding: 2px 6px; border-radius: 3px;">China's National Day</span><br>
+                    <strong>Oct 31:</strong> <span class="holiday" style="padding: 2px 6px; border-radius: 3px;">Halloween</span><br>
+                    <strong>Oct:</strong> <span class="school-event" style="padding: 2px 6px; border-radius: 3px;">Borong Chinese Festival</span><br>
+                    <strong>Oct:</strong> <span class="baseball-event" style="padding: 2px 6px; border-radius: 3px;">National Youth Baseball Open Championship Finals</span>
+                </div>
+            </div>
+
+            <!-- November -->
+            <div class="month-card">
+                <div class="month-header nov">
+                    <div class="month-name">November</div>
+                    <div class="month-slogan">"Gratitude turns what we have into enough"</div>
+                </div>
+                <table class="calendar-table">
+                    <tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr>
+                    <tr><td class="weekend">1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td class="weekend">7</td></tr>
+                    <tr><td class="weekend">8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td class="weekend">14</td></tr>
+                    <tr><td class="weekend">15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td class="weekend">21</td></tr>
+                    <tr><td class="weekend">22</td><td>23</td><td>24</td><td>25</td><td class="holiday">26</td><td>27</td><td class="weekend">28</td></tr>
+                    <tr><td class="weekend">29</td><td>30</td><td class="other-month">1</td><td class="other-month">2</td><td class="other-month">3</td><td class="other-month">4</td><td class="other-month weekend">5</td></tr>
+                </table>
+                <div style="padding: 10px; font-size: 12px;">
+                    <strong>Nov 26:</strong> <span class="holiday" style="padding: 2px 6px; border-radius: 3px;">Thanksgiving</span><br>
+                    <strong>Nov:</strong> <span class="school-event" style="padding: 2px 6px; border-radius: 3px;">Boai Sunshine Festival</span><br>
+                    <strong>Nov:</strong> <span class="baseball-event" style="padding: 2px 6px; border-radius: 3px;">MLB CUP Autumn - Chengdu</span><br>
+                    <strong>Nov:</strong> <span class="baseball-event" style="padding: 2px 6px; border-radius: 3px;">Shaanxi Traditional Sports School Baseball Championship</span>
+                </div>
+            </div>
+
+            <!-- December -->
+            <div class="month-card">
+                <div class="month-header dec">
+                    <div class="month-name">December</div>
+                    <div class="month-slogan">"The best way to spread cheer"</div>
+                </div>
+                <table class="calendar-table">
+                    <tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr>
+                    <tr><td class="other-month weekend">29</td><td class="other-month">30</td><td>1</td><td>2</td><td>3</td><td>4</td><td class="weekend">5</td></tr>
+                    <tr><td class="weekend">6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td class="weekend">12</td></tr>
+                    <tr><td class="weekend">13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td class="weekend">19</td></tr>
+                    <tr><td class="weekend">20</td><td>21</td><td>22</td><td>23</td><td>24</td><td class="holiday">25</td><td class="weekend">26</td></tr>
+                    <tr><td class="weekend">27</td><td>28</td><td>29</td><td>30</td><td class="holiday">31</td><td class="other-month">1</td><td class="other-month weekend">2</td></tr>
+                </table>
+                <div style="padding: 10px; font-size: 12px;">
+                    <strong>Dec 25:</strong> <span class="holiday" style="padding: 2px 6px; border-radius: 3px;">Christmas Day</span><br>
+                    <strong>Dec 31:</strong> <span class="holiday" style="padding: 2px 6px; border-radius: 3px;">New Year's Eve</span><br>
+                    <strong>Dec:</strong> <span class="school-event" style="padding: 2px 6px; border-radius: 3px;">Boya Art Festival</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-box holiday-legend"></div>
+                <span>Public Holidays</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-box school-legend"></div>
+                <span>School Events</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-box weekend-legend"></div>
+                <span>Weekend (Sat & Sun)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-box baseball-legend"></div>
+                <span>Baseball Events</span>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 30px; padding: 20px; color: #666; font-size: 12px;">
+            <p>打印提示：请使用 A4 横版(Landscape) 打印，并设置左侧装订边距约 25mm</p>
+            <p>Print Tip: Use A4 Landscape with left binding margin ~25mm</p>
+        </div>
+    </div>
+</body>
+</html>
