@@ -1,8 +1,33 @@
-// Variables
+// ============================================================
+//  墨玉青 · 主题变量
+//  取向：学术克制 —— 墨玉为骨，宣纸为底，重排版而不重装饰。
+//  说明：下方“兼容别名”保留原主题变量名，使既有规则可平滑迁移。
+// ============================================================
 
-@brand-primary: #0085A1;
-@gray-dark: lighten(black, 25%);
-@gray: lighten(black, 50%);
-@gray-l: lighten(black, 75%);
-@white-faded: fade(white, 80%);
-@gray-light: #eee;
+// -- 墨玉青主色阶（由原 #0085A1 降饱和、加深而来）--
+@jade-900: #0A2E36;   // 极深：头图遮罩、深底
+@jade-800: #0F4C5C;   // 深
+@jade-700: #1A6472;   // 主色：链接与强调（白底对比度约 6.7:1，达 WCAG AA）
+@jade-600: #237C8C;   // 亮：悬停点缀
+@jade-300: #9EC2C9;   // 浅：边框
+@jade-100: #DCE9EB;   // 极浅底
+@jade-50:  #F2F7F8;   // 最浅底
+
+// -- 宣纸与墨 --
+@paper:      #FAFAF7;   // 页面底色（暖白，长文久读不刺眼）
+@paper-deep: #F4F3EF;   // 次级底色（引用、代码块）
+@line:       #E5E3DC;   // 分隔线
+@line-soft:  #EFEDE7;   // 更轻的分隔线
+
+@ink-900: #1A1A18;   // 标题
+@ink-700: #2C2C2A;   // 正文
+@ink-500: #5F5E5A;   // 次要文字
+@ink-300: #93918B;   // 元信息、辅助说明
+
+// -- 与原主题兼容的别名（勿删：sidebar / side-catalog 等多处引用）--
+@brand-primary: @jade-700;
+@gray-dark:     @ink-700;
+@gray:          @ink-500;
+@gray-l:        @ink-300;
+@gray-light:    @line;
+@white-faded:   fade(white, 80%);

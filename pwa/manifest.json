@@ -1,7 +1,7 @@
 {
-  "name": "BY Blog",
-  "short_name": "BY Blog",
-  "description": "A personal blog by engineer",
+  "name": "如是我闻",
+  "short_name": "如是我闻",
+  "description": "沐杰的文章 —— 能源观察、地热技术与随笔",
   "icons": [{
     "src": "icons/pwa_icon_128.png",
     "sizes": "128x128",
@@ -11,8 +11,8 @@
     "sizes": "512x512",
     "type": "image/png"
   }],
-  "background_color": "#fff",
-  "theme_color": "#000",
+  "background_color": "#FAFAF7",
+  "theme_color": "#1A6472",
   "start_url": "/",
   "display": "standalone",
   "orientation": "portrait"

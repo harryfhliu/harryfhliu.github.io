@@ -2,24 +2,30 @@
 /* from http://stackoverflow.com/a/23393920 */
 
 .highlight pre code * {
-  white-space: nowrap;    // this sets all children inside to nowrap
+  white-space: nowrap;    /* this sets all children inside to nowrap */
 }
 
 .highlight pre {
-  overflow-x: auto;       // this sets the scrolling in x
+  overflow-x: auto;       /* this sets the scrolling in x */
 }
 
 .highlight pre code {
-  white-space: pre;       // forces <code> to respect <pre> formatting
+  white-space: pre;       /* forces <code> to respect <pre> formatting */
 }
 
 
 /*
  * GitHub style for Pygments syntax highlighter, for use with Jekyll
  * Courtesy of GitHub.com
+ *
+ * 已适配「墨玉青」：
+ *   - 代码块底色由冷灰 #f8f8f8 改为宣纸次级色 #f4f3ef
+ *   - 边框由 #ccc 收敛为柔和分割线 #e5e3dc
+ *   - 类型名 / 类名关键字改用墨玉青主色
+ *   - 原文使用 // 作注释（CSS 不合法），已统一改为标准块注释
  */
 
-.highlight pre, pre, .highlight .hll { background-color: #f8f8f8; border: 1px solid #ccc; padding: 6px 10px; border-radius: 3px; }
+.highlight pre, pre, .highlight .hll { background-color: #f4f3ef; border: 1px solid #e5e3dc; padding: 6px 10px; border-radius: 3px; }
 .highlight .c { color: #999988; font-style: italic; }
 .highlight .err { color: #a61717; background-color: #e3d2d2; }
 .highlight .k { font-weight: bold; }
@@ -45,13 +51,13 @@
 .highlight .kn { font-weight: bold; }
 .highlight .kp { font-weight: bold; }
 .highlight .kr { font-weight: bold; }
-.highlight .kt { color: #445588; font-weight: bold; }
+.highlight .kt { color: #1a6472; font-weight: bold; }
 .highlight .m { color: #009999; }
 .highlight .s { color: #dd1144; }
 .highlight .n { color: #333333; }
 .highlight .na { color: teal; }
 .highlight .nb { color: #0086b3; }
-.highlight .nc { color: #445588; font-weight: bold; }
+.highlight .nc { color: #1a6472; font-weight: bold; }
 .highlight .no { color: teal; }
 .highlight .ni { color: purple; }
 .highlight .ne { color: #990000; font-weight: bold; }
@@ -81,4 +87,4 @@
 .highlight .vg { color: teal; }
 .highlight .vi { color: teal; }
 .highlight .il { color: #009999; }
-.highlight .gc { color: #999; background-color: #EAF2F5; }
+.highlight .gc { color: #999; background-color: #e1f0f0; }
