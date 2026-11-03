@@ -1,0 +1,16 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="如是我闻：分布式光纤传感、测井技术、新能源与地质探测的长期观察与思考。"><meta name="theme-color" content="#0b1210"><meta name="generator" content="Astro v6.4.8"><title>让ChatGPT加持你的word · 如是我闻</title><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="stylesheet" href="/_astro/BaseLayout.C6BvfzP0.css"></head> <body> <nav class="site-nav"> <div class="nav-inner"> <a href="/" class="nav-brand">如是<span class="accent">我闻</span></a> <div class="nav-links"> <a href="/" data-nav="home">首页</a> <a href="/tags/" data-nav="tags">标签</a> <a href="/about/" data-nav="about">关于</a> <div class="nav-search"> <span class="icon">⌕</span> <input type="search" id="site-search" placeholder="搜索文章…" autocomplete="off"> </div> </div> </div> </nav>  <header class="article-hero"> <div class="article-hero-inner"> <p class="post-card-date">2023 年 04 月 11 日</p> <h1 class="article-title">让ChatGPT加持你的word</h1>  <div class="article-meta"> <span>作者 · 沐杰</span> <span style="display:flex;gap:8px;flex-wrap:wrap"> <a href="/tags/word/" class="tag-pill">word</a><a href="/tags/AI/" class="tag-pill">AI</a><a href="/tags/ChatGPT/" class="tag-pill">ChatGPT</a> </span> </div> </div> </header> <article class="article-body">  <h1 id="让chatgpt加持你的word">让ChatGPT加持你的word</h1>
+<p>3月16日，微软展示了搭载copilot的Microsoft 365让人眼前一亮，在AI的强力加持下，办公软件的工作效率竟然可以发挥到如此程度。</p>
+<p>不过office的copilot还没正式发布，即便发布了也不是每个人都会订阅Microsoft 365，因此如果能通过插件工具将ChatGPT整合到自己的办公软件里也可以一定程度的解渴。</p>
+<p>今天发现了一个wordGPT的word插件，可以在一定程度上帮助一二。</p>
+<p>位置在这里<a href="https://github.com/filippofinke/WordGPT">https://github.com/filippofinke/WordGPT</a></p>
+<p>MacOS的安装方式如下：</p>
+<p>先关闭word；</p>
+<p>在终端输入如下代码：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#79B8FF">cd</span><span style="color:#9ECBFF"> ~/Library/Containers/com.microsoft.Word/Data/Documents/wef</span></span>
+<span class="line"><span style="color:#B392F0">wget</span><span style="color:#9ECBFF"> https://word-gpt-filippofinke.vercel.app/manifest.xml</span><span style="color:#79B8FF"> -O</span><span style="color:#9ECBFF"> wordgpt.xml</span></span></code></pre>
+<p>如果没有wef这个文件夹，就先mkdir创建之；</p>
+<p>启动word。</p>
+<p>启动后在”插入“-”加载项“里面点一下wordGPT，在”开始“页面就出现这个边栏助手了，一定程度上可以辅助写作。</p>
+<p>大概是这个样子，工具栏右边多个了白色的机器人：
+<img src="https://raw.githubusercontent.com/harryfhliu/picbed/master/img/202304112048033.png" alt="标题"></p>
+<p>第一次使用的时候需要填入你openai账号的api哦。</p>  </article> <div class="article-footer"> <a href="/" style="font-size:14px">← 返回首页</a> </div>  <footer class="site-footer"> <div>© 2026 如是我闻 · 由 Astro 构建</div> </footer> <script type="module">const e=document.getElementById("site-search");e&&e.addEventListener("keydown",t=>{t.key==="Enter"&&e.value.trim()&&(window.location.href=`/tags/?q=${encodeURIComponent(e.value.trim())}`)});const n=window.location.pathname;document.querySelectorAll("[data-nav]").forEach(t=>{const a=t.getAttribute("data-nav");(a==="home"?n==="/":n.startsWith(`/${a}`))&&t.classList.add("active")});</script> </body> </html>
