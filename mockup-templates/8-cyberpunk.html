@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>赛博朋克 · 如是我闻</title>
+<style>
+  :root{
+    --bg:#08080f;
+    --bg-2:#0d0d18;
+    --panel:#11111f;
+    --cyan:#00f0ff;
+    --magenta:#ff2e97;
+    --violet:#8a5cff;
+    --text:#d8e4ff;
+    --dim:#5a6b8c;
+    --line:#1c2440;
+    --mono:"SF Mono","Menlo","Consolas",monospace;
+    --sans:"PingFang SC","Helvetica Neue",sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    background:
+      linear-gradient(rgba(0,240,255,.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,240,255,.04) 1px, transparent 1px),
+      radial-gradient(900px 500px at 20% -10%, rgba(138,92,255,.14), transparent 60%),
+      radial-gradient(800px 500px at 90% 0%, rgba(255,46,151,.10), transparent 55%),
+      var(--bg);
+    background-size:44px 44px, 44px 44px, auto, auto, auto;
+    color:var(--text);
+    font-family:var(--sans);
+  }
+  .scanline{position:fixed;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,transparent 0 2px,rgba(0,0,0,.14) 2px 4px);z-index:9;opacity:.5}
+
+  .wrap{max-width:920px;margin:0 auto;padding:0 40px;position:relative;z-index:10}
+
+  nav{display:flex;align-items:center;justify-content:space-between;padding:26px 0;border-bottom:1px solid var(--line)}
+  .brand{font-family:var(--mono);font-size:18px;font-weight:700;color:var(--cyan);text-shadow:0 0 14px rgba(0,240,255,.6)}
+  .brand .dot{color:var(--magenta);text-shadow:0 0 14px rgba(255,46,151,.6)}
+  .nav-links a{margin-left:26px;text-decoration:none;font-family:var(--mono);font-size:12px;color:var(--dim);letter-spacing:.08em;transition:color .2s,text-shadow .2s}
+  .nav-links a:hover{color:var(--cyan);text-shadow:0 0 10px rgba(0,240,255,.5)}
+
+  .hero{padding:80px 0 60px}
+  .hero-tag{font-family:var(--mono);font-size:11px;letter-spacing:.25em;color:var(--magenta);text-shadow:0 0 12px rgba(255,46,151,.5);margin-bottom:26px}
+  .hero-tag::before{content:"▮ ";color:var(--magenta)}
+  .hero-title{font-size:58px;font-weight:700;line-height:1.1;letter-spacing:.02em}
+  .hero-title .glow-cyan{color:var(--cyan);text-shadow:0 0 22px rgba(0,240,255,.65)}
+  .hero-title .glow-magenta{color:var(--magenta);text-shadow:0 0 22px rgba(255,46,151,.65)}
+  .hero-desc{margin-top:28px;font-size:14px;color:var(--dim);line-height:1.9;max-width:520px}
+  .hero-desc b{color:var(--text);font-weight:600}
+
+  .stats{display:flex;gap:30px;margin-top:36px}
+  .stat{font-family:var(--mono)}
+  .stat .num{font-size:26px;color:var(--cyan);text-shadow:0 0 14px rgba(0,240,255,.5)}
+  .stat .lbl{font-size:10px;color:var(--dim);letter-spacing:.15em;margin-top:4px}
+
+  .list{padding:10px 0 80px}
+  .post-item{
+    display:flex;align-items:center;gap:22px;padding:20px 22px;margin-bottom:14px;
+    background:var(--panel);border:1px solid var(--line);border-radius:6px;position:relative;overflow:hidden;
+    transition:border-color .2s,transform .2s,box-shadow .2s;cursor:pointer;
+  }
+  .post-item::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--cyan),var(--magenta));opacity:.7}
+  .post-item:hover{border-color:var(--cyan);transform:translateX(6px);box-shadow:0 0 24px rgba(0,240,255,.12)}
+  .post-idx{font-family:var(--mono);font-size:12px;color:var(--dim);min-width:40px}
+  .post-body{flex:1}
+  .post-title{font-size:17px;font-weight:600;transition:color .2s}
+  .post-item:hover .post-title{color:var(--cyan)}
+  .post-sub{font-size:12.5px;color:var(--dim);margin-top:5px;line-height:1.6}
+  .post-meta{font-family:var(--mono);font-size:11px;color:var(--magenta);white-space:nowrap}
+
+  footer{padding:44px 0;border-top:1px solid var(--line);display:flex;justify-content:space-between}
+  footer .foot{font-family:var(--mono);font-size:11px;color:var(--dim);letter-spacing:.15em}
+</style>
+</head>
+<body>
+<div class="scanline"></div>
+<div class="wrap">
+  <nav>
+    <div class="brand">如是<span class="dot">_</span>我闻</div>
+    <div class="nav-links"><a href="#">/小说</a><a href="#">/诗歌</a><a href="#">/技术</a><a href="#">/关于</a></div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-tag">EVAṂ MAYĀ ŚRUTAM — 「我是这样听闻的」</div>
+    <h1 class="hero-title">
+      <span class="glow-cyan">如是</span><span class="glow-magenta">我闻</span><br>以代码般的克制，记录世界
+    </h1>
+    <p class="hero-desc">
+      一个理想主义做题家的<b>长期知识库</b>——小说、诗歌与对能源、技术的观察，
+      如同运行在深空中的一段记忆。
+    </p>
+    <div class="stats">
+      <div class="stat"><div class="num">153</div><div class="lbl">篇 文章</div></div>
+      <div class="stat"><div class="num">16</div><div class="lbl">年 跨度</div></div>
+      <div class="stat"><div class="num">236</div><div class="lbl">个 标签</div></div>
+    </div>
+  </header>
+
+  <section class="list">
+    <div class="post-item">
+      <span class="post-idx">[01]</span>
+      <div class="post-body">
+        <div class="post-title">十五五地热版图：谁在定指标，谁在表态</div>
+        <div class="post-sub">一份关于地热产业目标与地方竞逐的长期观察。</div>
+      </div>
+      <span class="post-meta">2026.10.28</span>
+    </div>
+    <div class="post-item">
+      <span class="post-idx">[02]</span>
+      <div class="post-body">
+        <div class="post-title">氦气产业现状分析</div>
+        <div class="post-sub">稀有气体的全球格局，与一份冷静的供需推演。</div>
+      </div>
+      <span class="post-meta">2026.09.14</span>
+    </div>
+    <div class="post-item">
+      <span class="post-idx">[03]</span>
+      <div class="post-body">
+        <div class="post-title">致命唤醒 · 第十九章</div>
+        <div class="post-sub">长篇科幻：一名青年在模拟世界里，怀疑自身、怀疑操纵、怀疑真实。</div>
+      </div>
+      <span class="post-meta">2025.12.03</span>
+    </div>
+    <div class="post-item">
+      <span class="post-idx">[04]</span>
+      <div class="post-body">
+        <div class="post-title">九歌 · 独感</div>
+        <div class="post-sub">旧作数则，以诗记一时之心绪。</div>
+      </div>
+      <span class="post-meta">2025.08.21</span>
+    </div>
+  </section>
+
+  <footer><div class="foot">如是我闻 · EVAṂ MAYĀ ŚRUTAM</div><div class="foot">v2.0.0</div></footer>
+</div>
+</body>
+</html>

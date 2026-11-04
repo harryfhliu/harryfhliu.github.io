@@ -8,6 +8,8 @@ tags:
   - "似曾相识"
 catalog: true
 legacySlug: "似曾相识De-ja-vu"
+category: essay
+
 ---
 
 # 似曾相识Déjà vu

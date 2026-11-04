@@ -1,0 +1,228 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const CAT_ORDER = [
+  { key: 'tech', name: '技术' },
+  { key: 'fiction', name: '小说' },
+  { key: 'poetry', name: '诗歌' },
+  { key: 'essay', name: '杂文' },
+];
+
+interface PostVM {
+  id: string;
+  title: string;
+  subtitle: string;
+  year: number;
+  dateMMDD: string;
+  tags: string[];
+}
+
+export async function getStaticPaths() {
+  // 注意：getStaticPaths 会被 Astro hoist 到独立作用域，必须在此函数内部定义常量
+  const CATEGORIES: Record<string, { name: string; desc: string }> = {
+    tech: { name: '技术', desc: '能源、测井、新能源等方向的技术调研与行业观察。' },
+    fiction: { name: '小说', desc: '长篇连载、梦境记录与志怪故事。' },
+    poetry: { name: '诗歌', desc: '以诗记一时之心绪。' },
+    essay: { name: '杂文', desc: '时事评论、书评、影评与随笔。' },
+  };
+
+  const PAGE_SIZE = 20;
+
+  function fmtMMDD(d: Date): string {
+    return `${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+  }
+
+  const posts = (await getCollection('blog'))
+    .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+  const toVM = (p: (typeof posts)[number]): PostVM => ({
+    id: p.id,
+    title: p.data.title,
+    subtitle: p.data.subtitle ?? '',
+    year: p.data.date.getFullYear(),
+    dateMMDD: fmtMMDD(p.data.date),
+    tags: p.data.tags,
+  });
+
+  // 全站分类统计 + 按分类归档
+  const catTotal: Record<string, number> = {};
+  const byCategory: Record<string, PostVM[]> = {};
+  for (const p of posts) {
+    const cat = p.data.category ?? 'essay';
+    catTotal[cat] = (catTotal[cat] || 0) + 1;
+    if (!byCategory[cat]) byCategory[cat] = [];
+    byCategory[cat].push(toVM(p));
+  }
+
+  const paths: any[] = [];
+  for (const [cat, meta] of Object.entries(CATEGORIES)) {
+    const vms = byCategory[cat] || [];
+    const totalPages = Math.max(1, Math.ceil(vms.length / PAGE_SIZE));
+
+    // 该分类的标签云 + 时间轴
+    const tagCount: Record<string, number> = {};
+    for (const v of vms) for (const t of v.tags) tagCount[t] = (tagCount[t] || 0) + 1;
+    const topTags = Object.entries(tagCount).sort((a, b) => b[1] - a[1]).slice(0, 15);
+    const yearCount: Record<number, number> = {};
+    for (const v of vms) yearCount[v.year] = (yearCount[v.year] || 0) + 1;
+    const years = Object.keys(yearCount).map(Number).sort((a, b) => b - a);
+    const earliestYear = years.length ? years[years.length - 1] : null;
+
+    for (let i = 0; i < totalPages; i++) {
+      const currentPage = i + 1;
+      const pagePosts = vms.slice(i * PAGE_SIZE, (i + 1) * PAGE_SIZE);
+      const groups: Record<number, PostVM[]> = {};
+      for (const v of pagePosts) {
+        if (!groups[v.year]) groups[v.year] = [];
+        groups[v.year].push(v);
+      }
+      const pageYears = Object.keys(groups).map(Number).sort((a, b) => b - a);
+
+      paths.push({
+        params: { category: cat, page: i === 0 ? undefined : String(currentPage) },
+        props: {
+          cat,
+          catName: meta.name,
+          catDesc: meta.desc,
+          pageYears,
+          groups,
+          currentPage,
+          totalPages,
+          totalPosts: vms.length,
+          topTags,
+          years,
+          yearCount,
+          earliestYear,
+          catTotal,
+        },
+      });
+    }
+  }
+  return paths;
+}
+
+const {
+  cat,
+  catName,
+  catDesc,
+  pageYears,
+  groups,
+  currentPage,
+  totalPages,
+  totalPosts,
+  topTags,
+  years,
+  yearCount,
+  earliestYear,
+  catTotal,
+} = Astro.props;
+
+function pageUrl(n: number): string {
+  return n === 1 ? `/${cat}/` : `/${cat}/${n}/`;
+}
+const prevUrl = currentPage > 1 ? pageUrl(currentPage - 1) : null;
+const nextUrl = currentPage < totalPages ? pageUrl(currentPage + 1) : null;
+const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
+---
+
+<BaseLayout>
+  <header class="hero">
+    <div class="hero-inner">
+      <p class="hero-kicker">如是我闻 · 分类</p>
+      <h1 class="hero-title">{catName}</h1>
+      <p class="hero-desc">{catDesc}</p>
+      <div class="hero-meta">
+        <span><b>{totalPosts}</b> 篇文章</span>
+        <span>自 <b>{earliestYear ?? '—'}</b> 年起</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="home-grid">
+      <section>
+        {pageYears.map((y) => (
+          <section class="year-group">
+            <h2 class="year-heading">{y}<span class="year-count">{groups[y].length} 篇</span></h2>
+            <div class="post-list">
+              {groups[y].map((post) => (
+                <a href={`/posts/${post.id}/`} class="post-item">
+                  <span class="post-item-date">{post.dateMMDD}</span>
+                  <div class="post-item-main">
+                    <h3 class="post-item-title">{post.title}</h3>
+                    {post.subtitle && <p class="post-item-sub">{post.subtitle}</p>}
+                    {post.tags.length > 0 && (
+                      <div class="post-item-tags">
+                        {post.tags.slice(0, 4).map((t) => <span class="tag-pill">{t}</span>)}
+                      </div>
+                    )}
+                  </div>
+                </a>
+              ))}
+            </div>
+          </section>
+        ))}
+
+        {totalPages > 1 && (
+          <nav class="pagination" aria-label="分页导航">
+            {prevUrl
+              ? <a class="page-btn" href={prevUrl}>« 上一页</a>
+              : <span class="page-btn disabled">« 上一页</span>}
+            <div class="page-numbers">
+              {pageNumbers.map((n) => (
+                n === currentPage
+                  ? <span class="page-num current">{n}</span>
+                  : <a class="page-num" href={pageUrl(n)}>{n}</a>
+              ))}
+            </div>
+            <span class="page-info">{currentPage} / {totalPages} 页</span>
+            {nextUrl
+              ? <a class="page-btn" href={nextUrl}>下一页 »</a>
+              : <span class="page-btn disabled">下一页 »</span>}
+          </nav>
+        )}
+      </section>
+
+      <aside class="sidebar">
+        <div class="side-card">
+          <h3>分类</h3>
+          <div class="tag-cloud">
+            {CAT_ORDER.map((c) => (
+              <a
+                href={`/${c.key}/`}
+                class="tag-pill"
+                style={c.key === cat ? 'background:var(--gold);color:#fff;border-color:var(--gold)' : ''}
+              >
+                {c.name}<span class="tag-count">{catTotal[c.key] ?? 0}</span>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <div class="side-card">
+          <h3>主题</h3>
+          <div class="tag-cloud">
+            {topTags.map(([t, n]) => (
+              <a href={`/tags/${encodeURIComponent(t)}/`} class="tag-pill">
+                {t}<span class="tag-count">{n}</span>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <div class="side-card">
+          <h3>年份</h3>
+          <div class="timeline">
+            {years.map((y) => (
+              <div class="timeline-item">
+                <div class="timeline-year">{y}</div>
+                <div class="timeline-count">{yearCount[y]} 篇</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+</BaseLayout>

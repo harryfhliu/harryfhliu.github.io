@@ -9,6 +9,8 @@ tags:
   - "ChatGPT"
 catalog: true
 legacySlug: "让ChatGPT加持你的word"
+category: tech
+
 ---
 
 # 让ChatGPT加持你的word

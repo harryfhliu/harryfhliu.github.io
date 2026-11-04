@@ -13,6 +13,7 @@ const blog = defineCollection({
     'header-img': z.string().optional(),
     tags: z.array(z.string()).default([]),
     catalog: z.boolean().default(false),
+    category: z.enum(['tech', 'fiction', 'poetry', 'essay']).optional(),
     legacySlug: z.string().optional(),
   }),
 });

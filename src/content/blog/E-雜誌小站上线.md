@@ -9,6 +9,8 @@ tags:
   - "分享"
 catalog: true
 legacySlug: "E-雜誌小站上线"
+category: essay
+
 ---
 
 # E-雜誌小站上线了

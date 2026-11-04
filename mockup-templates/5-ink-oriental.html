@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>墨韵东方 · 如是我闻</title>
+<style>
+  :root{
+    --paper:#f4efe3;
+    --paper-deep:#eae3d2;
+    --ink:#2b2723;
+    --ink-2:#5c5448;
+    --ink-3:#8a8071;
+    --cinnabar:#b03a2e;
+    --cinnabar-soft:#c85c4a;
+    --line:#d8cfbc;
+    --serif:"Songti SC","STSong","SimSun",serif;
+    --kai:"Kaiti SC","STKaiti","KaiTi",serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    background:
+      radial-gradient(1200px 600px at 50% -100px, rgba(176,58,46,.04), transparent 60%),
+      var(--paper);
+    color:var(--ink);
+    font-family:var(--serif);
+    -webkit-font-smoothing:antialiased;
+  }
+  /* 顶部朱砂细线 */
+  .top-rule{height:3px;background:linear-gradient(90deg,transparent,var(--cinnabar),transparent)}
+  .wrap{max-width:880px;margin:0 auto;padding:0 40px}
+
+  /* 导航 */
+  nav{display:flex;align-items:center;justify-content:space-between;padding:26px 0;border-bottom:1px solid var(--line)}
+  .nav-seal{
+    width:40px;height:40px;border:2px solid var(--cinnabar);color:var(--cinnabar);
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--kai);font-size:11px;line-height:1.15;text-align:center;
+    transform:rotate(-3deg);
+  }
+  .nav-seal span{display:block}
+  .nav-links a{margin-left:28px;text-decoration:none;color:var(--ink-2);font-size:14px;letter-spacing:.2em;transition:color .2s}
+  .nav-links a:hover{color:var(--cinnabar)}
+
+  /* Hero */
+  .hero{padding:90px 0 70px;text-align:center;position:relative}
+  .hero-kicker{font-family:var(--kai);color:var(--cinnabar);letter-spacing:.5em;font-size:13px;margin-bottom:34px}
+  .hero-title{
+    font-size:76px;font-weight:400;letter-spacing:.12em;line-height:1.15;
+    writing-mode:horizontal-tb;
+    display:inline-block;
+  }
+  .hero-title .char{
+    display:inline-block;position:relative;padding:0 6px;
+  }
+  .hero-title .char::after{
+    content:"";position:absolute;left:50%;bottom:-10px;transform:translateX(-50%);
+    width:6px;height:6px;background:var(--cinnabar);opacity:.5;
+  }
+  .hero-desc{
+    margin-top:46px;font-family:var(--kai);color:var(--ink-2);font-size:15.5px;
+    line-height:2.1;letter-spacing:.08em;max-width:520px;margin-left:auto;margin-right:auto;
+  }
+  .hero-desc em{color:var(--cinnabar);font-style:normal}
+
+  /* 印章 + 落款 */
+  .seal-row{margin-top:40px;display:flex;align-items:center;justify-content:center;gap:20px}
+  .seal-box{
+    width:52px;height:52px;background:var(--cinnabar);color:var(--paper);
+    font-family:var(--kai);font-size:11px;line-height:1.2;text-align:center;
+    display:flex;align-items:center;justify-content:center;
+    border-radius:4px;box-shadow:0 2px 8px rgba(176,58,46,.25);
+    transform:rotate(2deg);
+  }
+  .seal-caption{font-family:var(--kai);color:var(--ink-3);font-size:13px;letter-spacing:.3em}
+
+  /* 分割 */
+  .divider{display:flex;align-items:center;gap:16px;margin:30px 0 0}
+  .divider::before,.divider::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent)}
+  .divider .dot{width:7px;height:7px;background:var(--cinnabar);transform:rotate(45deg);opacity:.6}
+
+  /* 文章列表 */
+  .list{margin:50px 0 90px}
+  .year-mark{font-family:var(--kai);color:var(--cinnabar);font-size:15px;letter-spacing:.3em;margin:40px 0 8px}
+  .post-item{
+    display:flex;align-items:baseline;gap:24px;padding:22px 4px;
+    border-bottom:1px solid var(--line);cursor:pointer;transition:background .25s,padding-left .25s;
+  }
+  .post-item:hover{background:var(--paper-deep);padding-left:14px}
+  .post-item:hover .post-title{color:var(--cinnabar)}
+  .post-date{font-family:var(--kai);color:var(--ink-3);font-size:13px;letter-spacing:.12em;min-width:64px}
+  .post-body{flex:1}
+  .post-title{font-size:20px;font-weight:500;letter-spacing:.06em;transition:color .25s}
+  .post-sub{font-family:var(--kai);color:var(--ink-2);font-size:13.5px;margin-top:6px;line-height:1.7;letter-spacing:.04em}
+  .post-tags{margin-top:8px;display:flex;gap:10px}
+  .tag{font-family:var(--kai);font-size:11.5px;color:var(--ink-3);border:1px solid var(--line);padding:1px 8px;border-radius:2px}
+  .post-item:hover .tag{border-color:var(--cinnabar);color:var(--cinnabar)}
+
+  footer{padding:50px 0;text-align:center;border-top:1px solid var(--line)}
+  footer .foot-txt{font-family:var(--kai);color:var(--ink-3);font-size:13px;letter-spacing:.3em}
+</style>
+</head>
+<body>
+<div class="top-rule"></div>
+<div class="wrap">
+  <nav>
+    <div class="nav-seal"><span>如是<br>我闻</span></div>
+    <div class="nav-links">
+      <a href="#">小说</a><a href="#">诗歌</a><a href="#">技术</a><a href="#">关于</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-kicker">EVAṂ MAYĀ ŚRUTAM · 佛经开卷语</div>
+    <h1 class="hero-title">
+      <span class="char">如</span><span class="char">是</span><span class="char">我</span><span class="char">闻</span>
+    </h1>
+    <p class="hero-desc">
+      四字者，佛经开卷之首，意为<em>「我是这样听闻的」</em>。<br>
+      此地亦以同等的谦逊，记录听闻与所感——<br>
+      小说、诗歌，与对能源与技术的长期观察。
+    </p>
+    <div class="seal-row">
+      <div class="seal-box">理想<br>做题家</div>
+      <div class="seal-caption">印 · 理想主义做题家</div>
+    </div>
+  </header>
+
+  <div class="divider"><span class="dot"></span></div>
+
+  <section class="list">
+    <div class="year-mark">丙午 · 二〇二六</div>
+    <div class="post-item">
+      <span class="post-date">10-28</span>
+      <div class="post-body">
+        <div class="post-title">十五五地热版图：谁在定指标，谁在表态</div>
+        <div class="post-sub">一份关于地热产业目标与地方竞逐的长期观察。</div>
+        <div class="post-tags"><span class="tag">技术调研</span><span class="tag">地热</span></div>
+      </div>
+    </div>
+    <div class="post-item">
+      <span class="post-date">09-14</span>
+      <div class="post-body">
+        <div class="post-title">氦气产业现状分析</div>
+        <div class="post-sub">稀有气体的全球格局，与一份冷静的供需推演。</div>
+        <div class="post-tags"><span class="tag">技术调研</span><span class="tag">氦气</span></div>
+      </div>
+    </div>
+
+    <div class="year-mark">丙午 · 二〇二五</div>
+    <div class="post-item">
+      <span class="post-date">12-03</span>
+      <div class="post-body">
+        <div class="post-title">致命唤醒 · 第十九章</div>
+        <div class="post-sub">长篇科幻：一名青年在模拟世界里，怀疑自身、怀疑操纵、怀疑真实。</div>
+        <div class="post-tags"><span class="tag">小说</span><span class="tag">科幻</span></div>
+      </div>
+    </div>
+    <div class="post-item">
+      <span class="post-date">08-21</span>
+      <div class="post-body">
+        <div class="post-title">九歌 · 独感</div>
+        <div class="post-sub">旧作数则，以诗记一时之心绪。</div>
+        <div class="post-tags"><span class="tag">诗歌</span></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="foot-txt">如是 我 闻 · 如是我闻</div>
+  </footer>
+</div>
+</body>
+</html>

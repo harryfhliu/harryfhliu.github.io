@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>「如是我闻」风格对比 · 第二批（4 套新方案）</title>
+<style>
+  :root{--bg:#141414;--fg:#e8e8e8;--muted:#9a9a9a;--gold:#d4af37;--line:#2c2c2c}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--fg);font-family:"PingFang SC","Helvetica Neue",sans-serif;padding:40px 32px}
+  h1{font-size:26px;font-weight:600;letter-spacing:.02em}
+  h1 .accent{color:var(--gold)}
+  .sub{color:var(--muted);font-size:14px;margin-top:10px;line-height:1.7}
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px;margin-top:32px}
+  @media(max-width:980px){.grid{grid-template-columns:1fr}}
+  .card{background:#1c1c1c;border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+  .card-head{padding:18px 22px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .card-head .name{font-size:16px;font-weight:600}
+  .card-head .name small{color:var(--gold);font-size:11px;margin-left:8px;letter-spacing:.1em;font-weight:400}
+  .card-head .tag{font-size:11px;color:var(--muted);border:1px solid var(--line);padding:3px 10px;border-radius:20px;white-space:nowrap}
+  .card .frame{flex:1;height:760px;background:#000}
+  .card .frame iframe{width:100%;height:100%;border:none;display:block}
+  .card-foot{padding:14px 22px;color:var(--muted);font-size:12.5px;line-height:1.7;border-top:1px solid var(--line)}
+  .legend{margin-top:36px;padding:20px 22px;background:#1c1c1c;border:1px solid var(--line);border-radius:12px}
+  .legend h2{font-size:15px;margin-bottom:14px;color:var(--gold)}
+  .legend table{width:100%;border-collapse:collapse;font-size:13px}
+  .legend th,.legend td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+  .legend th{color:var(--muted);font-weight:500;font-size:12px}
+  .legend tr:last-child td{border-bottom:none}
+</style>
+</head>
+<body>
+  <h1>「如是我闻」风格对比 · <span class="accent">第二批方案</span></h1>
+  <p class="sub">4 套全新风格，气质差异更大：浅色 / 深色、东方 / 西方、古典 / 未来都有覆盖。每个框内可独立滚动、悬停看交互动效。</p>
+
+  <div class="grid">
+    <div class="card">
+      <div class="card-head">
+        <div class="name">方案 A · 墨韵东方<small>新中式 · 浅色</small></div>
+        <span class="tag">最契合「如是我闻」</span>
+      </div>
+      <div class="frame"><iframe src="5-ink-oriental.html"></iframe></div>
+      <div class="card-foot">宣纸米白底 + 墨黑文字 + 朱砂印章 + 宋体/楷体。大量留白，站名配篆刻印章落款，气质最接近佛经的「古雅庄重」。</div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div class="name">方案 B · 装饰艺术<small>Art Deco · 深色</small></div>
+        <span class="tag">几何奢华</span>
+      </div>
+      <div class="frame"><iframe src="6-art-deco.html"></iframe></div>
+      <div class="card-foot">深黑底 + 香槟金 + 放射状太阳纹 + 对称布局 + 几何边框。20 年代纽约/上海滩的奢华几何感，比「黑金奢华」更强调对称与装饰纹样。</div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div class="name">方案 C · 瑞士国际主义<small>Swiss · 浅色</small></div>
+        <span class="tag">极简克制</span>
+      </div>
+      <div class="frame"><iframe src="7-swiss.html"></iframe></div>
+      <div class="card-foot">纯白底 + 严格网格 + 红黑强调 + 无衬线大字。功能主义、冷静理性，信息密度高、可读性最好，最像「档案/知识库」。</div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div class="name">方案 D · 赛博朋克<small>Neon · 深色</small></div>
+        <span class="tag">未来科技感</span>
+      </div>
+      <div class="frame"><iframe src="8-cyberpunk.html"></iframe></div>
+      <div class="card-foot">深黑蓝底 + 霓虹青/品红发光 + 网格扫描线 + 等宽字体。视觉冲击最强、最有「未来感」，但和「如是我闻」的古雅气质反差最大。</div>
+    </div>
+  </div>
+
+  <div class="legend">
+    <h2>快速对比</h2>
+    <table>
+      <tr><th>方案</th><th>底色</th><th>气质</th><th>最突出优点</th><th>与「如是我闻」契合度</th></tr>
+      <tr><td><b>A 墨韵东方</b></td><td>宣纸米白（浅）</td><td>古雅 · 禅意 · 人文</td><td>最贴合佛经站名，印章/楷体有辨识度</td><td>★★★★★</td></tr>
+      <tr><td><b>B 装饰艺术</b></td><td>深黑 + 金（深）</td><td>奢华 · 对称 · 装饰</td><td>几何纹样惊艳，庄重华丽</td><td>★★★★</td></tr>
+      <tr><td><b>C 瑞士极简</b></td><td>纯白（浅）</td><td>理性 · 克制 · 现代</td><td>可读性最好，最像专业档案</td><td>★★★</td></tr>
+      <tr><td><b>D 赛博朋克</b></td><td>深黑蓝（深）</td><td>未来 · 酷炫 · 反传统</td><td>视觉冲击最强</td><td>★★</td></tr>
+    </table>
+  </div>
+</body>
+</html>

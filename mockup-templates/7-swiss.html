@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>瑞士国际主义 · 如是我闻</title>
+<style>
+  :root{
+    --white:#ffffff;
+    --paper:#fafafa;
+    --black:#111111;
+    --black-2:#333333;
+    --gray:#666666;
+    --line:#e0e0e0;
+    --red:#e30613;
+    --sans:"Helvetica Neue","Helvetica","Arial","PingFang SC",sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--paper);color:var(--black);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+
+  .wrap{max-width:1000px;margin:0 auto;padding:0 40px}
+
+  /* 严格网格导航 */
+  nav{display:flex;align-items:center;justify-content:space-between;padding:28px 0;border-bottom:3px solid var(--black)}
+  .brand{font-size:20px;font-weight:700;letter-spacing:-.02em}
+  .brand .accent{color:var(--red)}
+  .nav-links{display:flex;gap:0}
+  .nav-links a{
+    text-decoration:none;color:var(--black);font-size:12px;font-weight:600;
+    letter-spacing:.05em;padding:8px 18px;border-right:1px solid var(--line);transition:color .15s;
+  }
+  .nav-links a:last-child{border-right:none}
+  .nav-links a:hover{color:var(--red)}
+
+  /* Hero：超大网格排版 */
+  .hero{padding:90px 0 60px;border-bottom:1px solid var(--line)}
+  .hero-meta{display:flex;align-items:center;gap:16px;margin-bottom:28px}
+  .hero-meta .tag{background:var(--red);color:#fff;font-size:11px;font-weight:700;letter-spacing:.1em;padding:4px 10px}
+  .hero-meta .idx{font-size:11px;color:var(--gray);letter-spacing:.2em}
+  .hero-title{font-size:64px;font-weight:700;letter-spacing:-.03em;line-height:1.06;max-width:720px}
+  .hero-title .accent{color:var(--red)}
+  .hero-sub{display:flex;margin-top:36px;gap:60px}
+  .hero-sub p{font-size:14px;color:var(--black-2);line-height:1.8;max-width:360px}
+  .hero-sub .en{font-size:11px;color:var(--gray);letter-spacing:.15em;line-height:1.9;padding-top:3px}
+
+  /* 文章列表：网格 + 编号 */
+  .list{padding:40px 0 80px}
+  .list-head{display:grid;grid-template-columns:60px 1fr 160px;gap:24px;padding:14px 0;border-bottom:2px solid var(--black);font-size:11px;font-weight:700;letter-spacing:.15em;color:var(--gray);text-transform:uppercase}
+  .post-item{display:grid;grid-template-columns:60px 1fr 160px;gap:24px;align-items:baseline;padding:24px 0;border-bottom:1px solid var(--line);cursor:pointer;transition:background .15s}
+  .post-item:hover{background:var(--white)}
+  .post-item:hover .post-title{color:var(--red)}
+  .post-num{font-size:13px;color:var(--gray);font-weight:600}
+  .post-title{font-size:18px;font-weight:600;letter-spacing:-.01em;transition:color .15s}
+  .post-sub{font-size:13px;color:var(--gray);margin-top:5px;line-height:1.6}
+  .post-date{font-size:12px;color:var(--gray);text-align:right;letter-spacing:.05em}
+
+  /* 分页 */
+  .pager{display:flex;align-items:center;justify-content:space-between;padding:30px 0;font-size:13px}
+  .pager .pages{display:flex;gap:6px}
+  .pager .page{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border:1px solid var(--line);font-weight:600;cursor:pointer;transition:all .15s}
+  .pager .page:hover{border-color:var(--black)}
+  .pager .page.active{background:var(--black);color:#fff;border-color:var(--black)}
+  .pager .dir{font-weight:700;cursor:pointer;letter-spacing:.05em}
+  .pager .dir:hover{color:var(--red)}
+
+  footer{padding:44px 0;border-top:3px solid var(--black);display:flex;justify-content:space-between;align-items:center}
+  footer .foot{font-size:11px;color:var(--gray);letter-spacing:.15em}
+  footer .red{width:12px;height:12px;background:var(--red)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <div class="brand">如是<span class="accent">我闻</span></div>
+    <div class="nav-links"><a href="#">小说</a><a href="#">诗歌</a><a href="#">技术</a><a href="#">关于</a></div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-meta"><span class="tag">EVAṂ MAYĀ ŚRUTAM</span><span class="idx">「我是这样听闻的」</span></div>
+    <h1 class="hero-title">以谦逊记录<br>小说、诗歌与<span class="accent">技术观察</span></h1>
+    <div class="hero-sub">
+      <p>一个理想主义做题家的长期知识库，内容可追溯至 2013 年。克制、理性、可检索。</p>
+      <div class="en">A LONG-FORM<br>ARCHIVE OF<br>FICTION · POETRY<br>· TECHNOLOGY</div>
+    </div>
+  </header>
+
+  <section class="list">
+    <div class="list-head"><span>№</span><span>标题</span><span>日期</span></div>
+
+    <div class="post-item">
+      <span class="post-num">01</span>
+      <div><div class="post-title">十五五地热版图：谁在定指标，谁在表态</div><div class="post-sub">一份关于地热产业目标与地方竞逐的长期观察。</div></div>
+      <span class="post-date">2026.10.28</span>
+    </div>
+    <div class="post-item">
+      <span class="post-num">02</span>
+      <div><div class="post-title">氦气产业现状分析</div><div class="post-sub">稀有气体的全球格局，与一份冷静的供需推演。</div></div>
+      <span class="post-date">2026.09.14</span>
+    </div>
+    <div class="post-item">
+      <span class="post-num">03</span>
+      <div><div class="post-title">致命唤醒 · 第十九章</div><div class="post-sub">长篇科幻：一名青年在模拟世界里，怀疑自身、怀疑操纵、怀疑真实。</div></div>
+      <span class="post-date">2025.12.03</span>
+    </div>
+    <div class="post-item">
+      <span class="post-num">04</span>
+      <div><div class="post-title">九歌 · 独感</div><div class="post-sub">旧作数则，以诗记一时之心绪。</div></div>
+      <span class="post-date">2025.08.21</span>
+    </div>
+  </section>
+
+  <div class="pager">
+    <span class="dir">← 上一页</span>
+    <div class="pages"><span class="page active">1</span><span class="page">2</span><span class="page">3</span><span class="page">4</span></div>
+    <span class="dir">下一页 →</span>
+  </div>
+
+  <footer><div class="foot">如是我闻 · EVAṂ MAYĀ ŚRUTAM</div><div class="red"></div></footer>
+</div>
+</body>
+</html>

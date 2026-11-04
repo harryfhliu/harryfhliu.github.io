@@ -5,8 +5,8 @@ interface Props {
   description?: string;
 }
 const { title, description } = Astro.props;
-const fullTitle = title ? `${title} · 如是我闻` : '如是我闻 · 光纤传感与新能源的长期观察';
-const desc = description || '如是我闻：分布式光纤传感、测井技术、新能源与地质探测的长期观察与思考。';
+const fullTitle = title ? `${title} · 如是我闻` : '如是我闻 · 小说、诗歌与技术的长期观察';
+const desc = description || '如是我闻（Evaṃ mayā śrutam，意为「我是这样听闻的」）：记录小说、诗歌，与对能源、测井等技术的长期观察。';
 ---
 
 <!doctype html>
@@ -15,10 +15,13 @@ const desc = description || '如是我闻：分布式光纤传感、测井技术
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={desc} />
-    <meta name="theme-color" content="#0a0a0a" />
+    <meta name="theme-color" content="#f5f0e4" />
     <meta name="generator" content={Astro.generator} />
     <title>{fullTitle}</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   </head>
   <body>
     <nav class="site-nav">
@@ -26,7 +29,10 @@ const desc = description || '如是我闻：分布式光纤传感、测井技术
         <a href="/" class="nav-brand">如是<span class="accent">我闻</span></a>
         <div class="nav-links">
           <a href="/" data-nav="home">首页</a>
-          <a href="/tags/" data-nav="tags">标签</a>
+          <a href="/tech/" data-nav="tech">技术</a>
+          <a href="/fiction/" data-nav="fiction">小说</a>
+          <a href="/poetry/" data-nav="poetry">诗歌</a>
+          <a href="/essay/" data-nav="essay">杂文</a>
           <a href="/about/" data-nav="about">关于</a>
           <div class="nav-search">
             <span class="icon">⌕</span>
