@@ -1,0 +1,65 @@
+---
+import '../styles/global.css';
+interface Props {
+  title?: string;
+  description?: string;
+}
+const { title, description } = Astro.props;
+const fullTitle = title ? `${title} · 如是我闻` : '如是我闻 · 光纤传感与新能源的长期观察';
+const desc = description || '如是我闻：分布式光纤传感、测井技术、新能源与地质探测的长期观察与思考。';
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={desc} />
+    <meta name="theme-color" content="#0b1210" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{fullTitle}</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body>
+    <nav class="site-nav">
+      <div class="nav-inner">
+        <a href="/" class="nav-brand">如是<span class="accent">我闻</span></a>
+        <div class="nav-links">
+          <a href="/" data-nav="home">首页</a>
+          <a href="/tags/" data-nav="tags">标签</a>
+          <a href="/about/" data-nav="about">关于</a>
+          <div class="nav-search">
+            <span class="icon">⌕</span>
+            <input type="search" id="site-search" placeholder="搜索文章…" autocomplete="off" />
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <slot />
+
+    <footer class="site-footer">
+      <div>© {new Date().getFullYear()} 如是我闻 · 由 Astro 构建</div>
+    </footer>
+
+    <script>
+      // 极简站内搜索：回车跳转到标签/搜索页（数据驱动，见 tags 页）
+      const input = document.getElementById('site-search') as HTMLInputElement | null;
+      if (input) {
+        input.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' && input.value.trim()) {
+            window.location.href = `/tags/?q=${encodeURIComponent(input.value.trim())}`;
+          }
+        });
+      }
+      // 高亮当前导航
+      const path = window.location.pathname;
+      document.querySelectorAll('[data-nav]').forEach((el) => {
+        const key = el.getAttribute('data-nav');
+        const active =
+          key === 'home' ? path === '/' : path.startsWith(`/${key}`);
+        if (active) el.classList.add('active');
+      });
+    </script>
+  </body>
+</html>

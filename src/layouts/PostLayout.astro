@@ -1,0 +1,46 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+
+const { post } = Astro.props;
+const { title, subtitle, date, author, tags, 'header-img': headerImg } = post.data;
+
+function fmtDate(d: Date): string {
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${y} 年 ${m} 月 ${day} 日`;
+}
+---
+
+<BaseLayout title={title} description={subtitle || undefined}>
+  <header class="article-hero">
+    <div class="article-hero-inner">
+      <p class="post-card-date">{fmtDate(date)}</p>
+      <h1 class="article-title">{title}</h1>
+      {subtitle && <p class="article-sub">{subtitle}</p>}
+      <div class="article-meta">
+        <span>作者 · {author}</span>
+        {tags.length > 0 && (
+          <span style="display:flex;gap:8px;flex-wrap:wrap">
+            {tags.map((t) => (
+              <a href={`/tags/${encodeURIComponent(t)}/`} class="tag-pill">{t}</a>
+            ))}
+          </span>
+        )}
+      </div>
+    </div>
+  </header>
+
+  <article class="article-body">
+    <slot />
+  </article>
+
+  <div class="article-footer">
+    <a href="/" style="font-size:14px">← 返回首页</a>
+  </div>
+</BaseLayout>

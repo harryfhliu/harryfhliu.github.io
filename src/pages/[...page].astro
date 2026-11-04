@@ -1,0 +1,188 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+interface PostVM {
+  id: string;
+  title: string;
+  subtitle: string;
+  year: number;
+  dateMMDD: string;
+  tags: string[];
+}
+
+export async function getStaticPaths() {
+  const PAGE_SIZE = 20;
+
+  function fmtMMDD(d: Date): string {
+    return `${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+  }
+
+  const posts = (await getCollection('blog'))
+    .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+  // 转成可序列化的纯数据视图（Date 在 getStaticPaths props 序列化时会变成字符串）
+  const vms: PostVM[] = posts.map((p) => ({
+    id: p.id,
+    title: p.data.title,
+    subtitle: p.data.subtitle ?? '',
+    year: p.data.date.getFullYear(),
+    dateMMDD: fmtMMDD(p.data.date),
+    tags: p.data.tags,
+  }));
+
+  // 标签云统计（全量）
+  const tagCount: Record<string, number> = {};
+  for (const v of vms) {
+    for (const t of v.tags) tagCount[t] = (tagCount[t] || 0) + 1;
+  }
+  const topTags = Object.entries(tagCount).sort((a, b) => b[1] - a[1]).slice(0, 20);
+
+  // 全量年份时间轴
+  const yearCount: Record<number, number> = {};
+  for (const v of vms) yearCount[v.year] = (yearCount[v.year] || 0) + 1;
+  const years = Object.keys(yearCount).map(Number).sort((a, b) => b - a);
+  const earliestYear = years.length > 0 ? years[years.length - 1] : null;
+
+  const totalPages = Math.max(1, Math.ceil(vms.length / PAGE_SIZE));
+
+  return Array.from({ length: totalPages }, (_, i) => {
+    const currentPage = i + 1;
+    const pagePosts = vms.slice(i * PAGE_SIZE, (i + 1) * PAGE_SIZE);
+
+    // 当前页按年份分组
+    const groups: Record<number, PostVM[]> = {};
+    for (const v of pagePosts) {
+      if (!groups[v.year]) groups[v.year] = [];
+      groups[v.year].push(v);
+    }
+    const pageYears = Object.keys(groups).map(Number).sort((a, b) => b - a);
+
+    return {
+      params: { page: i === 0 ? undefined : String(currentPage) },
+      props: {
+        pageYears,
+        groups,
+        currentPage,
+        totalPages,
+        totalPosts: vms.length,
+        topTags,
+        years,
+        yearCount,
+        earliestYear,
+        tagCountSize: Object.keys(tagCount).length,
+      },
+    };
+  });
+}
+
+const {
+  pageYears,
+  groups,
+  currentPage,
+  totalPages,
+  totalPosts,
+  topTags,
+  years,
+  yearCount,
+  earliestYear,
+  tagCountSize,
+} = Astro.props;
+
+function pageUrl(n: number): string {
+  return n === 1 ? '/' : `/${n}/`;
+}
+const prevUrl = currentPage > 1 ? pageUrl(currentPage - 1) : null;
+const nextUrl = currentPage < totalPages ? pageUrl(currentPage + 1) : null;
+const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
+---
+
+<BaseLayout>
+  <header class="hero">
+    <div class="hero-inner">
+      <p class="hero-kicker">Evaṃ mayā śrutam · 佛经开卷语</p>
+      <h1 class="hero-title">如是我闻</h1>
+      <p class="hero-desc">
+        「如是我闻」意为「我是这样听闻的」。
+        这里以同样的谦逊，记录小说、诗歌与技术调研——一个理想主义做题家的长期观察。
+      </p>
+      <div class="hero-meta">
+        <span><b>{totalPosts}</b> 篇文章</span>
+        <span><b>{tagCountSize}</b> 个主题标签</span>
+        <span>自 <b>{earliestYear ?? '—'}</b> 年起</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="home-grid">
+      <section>
+        {pageYears.map((y) => (
+          <section class="year-group">
+            <h2 class="year-heading">{y}<span class="year-count">{groups[y].length} 篇</span></h2>
+            <div class="post-list">
+              {groups[y].map((post) => (
+                <a href={`/posts/${post.id}/`} class="post-item">
+                  <span class="post-item-date">{post.dateMMDD}</span>
+                  <div class="post-item-main">
+                    <h3 class="post-item-title">{post.title}</h3>
+                    {post.subtitle && <p class="post-item-sub">{post.subtitle}</p>}
+                    {post.tags.length > 0 && (
+                      <div class="post-item-tags">
+                        {post.tags.slice(0, 4).map((t) => <span class="tag-pill">{t}</span>)}
+                      </div>
+                    )}
+                  </div>
+                </a>
+              ))}
+            </div>
+          </section>
+        ))}
+
+        {totalPages > 1 && (
+          <nav class="pagination" aria-label="分页导航">
+            {prevUrl
+              ? <a class="page-btn" href={prevUrl}>« 上一页</a>
+              : <span class="page-btn disabled">« 上一页</span>}
+            <div class="page-numbers">
+              {pageNumbers.map((n) => (
+                n === currentPage
+                  ? <span class="page-num current">{n}</span>
+                  : <a class="page-num" href={pageUrl(n)}>{n}</a>
+              ))}
+            </div>
+            <span class="page-info">{currentPage} / {totalPages} 页</span>
+            {nextUrl
+              ? <a class="page-btn" href={nextUrl}>下一页 »</a>
+              : <span class="page-btn disabled">下一页 »</span>}
+          </nav>
+        )}
+      </section>
+
+      <aside class="sidebar">
+        <div class="side-card">
+          <h3>标签云</h3>
+          <div class="tag-cloud">
+            {topTags.map(([t, n]) => (
+              <a href={`/tags/${encodeURIComponent(t)}/`} class="tag-pill">
+                {t}<span class="tag-count">{n}</span>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <div class="side-card">
+          <h3>时间轴</h3>
+          <div class="timeline">
+            {years.map((y) => (
+              <div class="timeline-item">
+                <div class="timeline-year">{y}</div>
+                <div class="timeline-count">{yearCount[y]} 篇</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+</BaseLayout>

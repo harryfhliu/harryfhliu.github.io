@@ -1,0 +1,69 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog'))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const tagCount = new Map<string, number>();
+for (const p of posts) {
+  for (const t of p.data.tags) {
+    tagCount.set(t, (tagCount.get(t) || 0) + 1);
+  }
+}
+const allTags = [...tagCount.entries()].sort((a, b) => b[1] - a[1]);
+
+// 搜索：?q= 参数，匹配标题/副标题/标签
+const q = (Astro.url.searchParams.get('q') || '').trim().toLowerCase();
+const results = q
+  ? posts.filter((p) =>
+      p.data.title.toLowerCase().includes(q) ||
+      (p.data.subtitle || '').toLowerCase().includes(q) ||
+      p.data.tags.some((t) => t.toLowerCase().includes(q))
+    )
+  : [];
+
+function fmtDate(d: Date): string {
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+}
+---
+
+<BaseLayout title={q ? `搜索：${q}` : '标签与搜索'} description="按主题标签浏览全部文章，或关键词搜索。">
+  <header class="hero" style="background:linear-gradient(160deg,var(--jade-800),var(--jade-600))">
+    <div class="hero-inner">
+      <p class="hero-kicker">Topics</p>
+      <h1 class="hero-title">{q ? `搜索：${q}` : '标签与搜索'}</h1>
+      <p class="hero-desc">{q ? `找到 ${results.length} 篇匹配「${q}」的文章。` : `共 ${allTags.length} 个主题标签，按热度排序。`}</p>
+    </div>
+  </header>
+
+  <main class="container" style="padding-top:40px;padding-bottom:80px">
+    {q ? (
+      <div>
+        {results.length === 0 ? (
+          <p style="color:var(--ink-2)">没有找到匹配的文章，试试其他关键词。</p>
+        ) : (
+          results.map((post) => (
+            <a href={`/posts/${post.id}/`} class="post-card">
+              <div class="post-card-body">
+                <p class="post-card-date">{fmtDate(post.data.date)}</p>
+                <h2 class="post-card-title" style="font-size:18px">{post.data.title}</h2>
+                {post.data.subtitle && <p class="post-card-sub">{post.data.subtitle}</p>}
+              </div>
+            </a>
+          ))
+        )}
+      </div>
+    ) : (
+      <div class="side-card" style="max-width:760px;margin:0 auto">
+        <div class="tag-cloud">
+          {allTags.map(([t, n]) => (
+            <a href={`/tags/${encodeURIComponent(t)}/`} class="tag-pill" style="font-size:14px">
+              {t}<span class="tag-count">{n}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    )}
+  </main>
+</BaseLayout>

@@ -1,0 +1,14 @@
+# 依赖
+node_modules/
+
+# 构建产物（已单独部署到 master 分支）
+dist/
+
+# Astro 缓存
+.astro/
+
+# 系统文件
+.DS_Store
+
+# 日志
+npm-debug.log*
