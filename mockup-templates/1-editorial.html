@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>如是我闻 · 编辑杂志风</title>
+<style>
+  :root{
+    --paper:#f7f4ee;
+    --ink:#16130e;
+    --ink-2:#5c5547;
+    --accent:#b5351f;
+    --line:#e2dbcc;
+    --serif:"Georgia","Songti SC","STSong","SimSun",serif;
+    --sans:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.7}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 32px}
+
+  /* 顶部导航 */
+  .topbar{border-bottom:1px solid var(--ink);padding:18px 0;display:flex;justify-content:space-between;align-items:center;font-size:12px;letter-spacing:.15em}
+  .topbar nav a{color:var(--ink);text-decoration:none;margin-right:26px;text-transform:uppercase}
+  .topbar nav a:hover{color:var(--accent)}
+  .topbar .issue{color:var(--ink-2)}
+
+  /* 站名区 */
+  .masthead{text-align:center;padding:54px 0 30px}
+  .masthead .kicker{font-size:12px;letter-spacing:.4em;color:var(--accent);text-transform:uppercase;margin-bottom:14px}
+  .masthead h1{font-family:var(--serif);font-size:84px;font-weight:400;letter-spacing:.06em;line-height:1.05}
+  .masthead .sub{font-family:var(--serif);font-size:17px;color:var(--ink-2);font-style:italic;margin-top:14px}
+
+  /* 主打封面 */
+  .cover{position:relative;margin:6px 0 44px;overflow:hidden}
+  .cover .c-img{height:420px;background:linear-gradient(135deg,#2b3a2f 0%,#1f2b24 55%,#3a2417 100%);position:relative}
+  .cover .c-img::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 70% 30%,rgba(181,53,31,.35),transparent 60%)}
+  .cover .c-tag{position:absolute;top:22px;left:24px;background:var(--accent);color:#fff;font-size:12px;letter-spacing:.2em;padding:6px 14px}
+  .cover .c-txt{position:absolute;left:0;right:0;bottom:0;padding:34px 38px;background:linear-gradient(transparent,rgba(22,19,14,.72))}
+  .cover .c-txt h2{font-family:var(--serif);font-size:40px;font-weight:400;color:#fff;line-height:1.2}
+  .cover .c-txt p{color:#e8e0d0;font-size:14px;margin-top:8px;max-width:640px}
+
+  /* 分栏标题 */
+  .section{display:flex;align-items:baseline;border-top:3px solid var(--ink);padding-top:16px;margin:0 0 22px}
+  .section h3{font-family:var(--serif);font-size:22px;font-weight:400}
+  .section span{font-size:12px;color:var(--ink-2);letter-spacing:.15em;margin-left:auto}
+
+  /* 错落网格 */
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-bottom:50px}
+  .card{border-bottom:1px solid var(--line);padding-bottom:20px;cursor:pointer}
+  .card .thumb{height:150px;background:#e6dfd0;margin-bottom:14px;position:relative;overflow:hidden}
+  .card .thumb .t{position:absolute;top:12px;left:12px;font-size:11px;letter-spacing:.15em;color:#fff;background:rgba(22,19,14,.75);padding:3px 9px}
+  .card h4{font-family:var(--serif);font-size:21px;font-weight:400;line-height:1.35}
+  .card h4:hover{color:var(--accent)}
+  .card .ex{font-size:13px;color:var(--ink-2);margin-top:8px}
+  .card .meta{font-size:11px;color:var(--ink-2);letter-spacing:.1em;margin-top:12px;text-transform:uppercase}
+  .card.big{grid-column:span 2}
+  .card.big .thumb{height:220px}
+  .card.big h4{font-size:28px}
+
+  /* 缩略色块 */
+  .a{background:#2b3a2f}.b{background:#5a3a2b}.c{background:#31424f}.d{background:#6e4b2f}.e{background:#3f3a2e}.f{background:#244040}
+
+  /* 页脚 */
+  footer{border-top:1px solid var(--ink);padding:26px 0 50px;display:flex;justify-content:space-between;font-size:12px;color:var(--ink-2);letter-spacing:.08em}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <nav>
+      <a>小说</a><a>诗歌</a><a>技术</a><a>新能源</a><a>关于</a>
+    </nav>
+    <span class="issue">第 8 期 · 2026.11</span>
+  </div>
+
+  <div class="masthead">
+    <div class="kicker">Evaṃ mayā śrutam</div>
+    <h1>如是我闻</h1>
+    <div class="sub">一个理想主义做题家的长期观察</div>
+  </div>
+
+  <div class="cover">
+    <div class="c-img"></div>
+    <div class="c-tag">本期主打 · 技术调研</div>
+    <div class="c-txt">
+      <h2>十五五地热版图：31 省目标全景，谁在定指标、谁在表态</h2>
+      <p>从省级规划到项目落地，一份关于中国地热能产业最新版图的深度梳理。</p>
+    </div>
+  </div>
+
+  <div class="section"><h3>小说创作</h3><span>Fiction</span></div>
+  <div class="grid">
+    <div class="card big">
+      <div class="thumb a"><div class="t">长篇 · 科幻</div></div>
+      <h4>致命唤醒</h4>
+      <div class="ex">当他发现自己生活的世界只是一场模拟，怀疑的链条由此展开。</div>
+      <div class="meta">Nov 2026 · 连载中</div>
+    </div>
+    <div class="card">
+      <div class="thumb b"><div class="t">短篇</div></div>
+      <h4>人头游戏</h4>
+      <div class="ex">一场关于身份与记忆的博弈。</div>
+      <div class="meta">2019 · 短篇</div>
+    </div>
+  </div>
+
+  <div class="section"><h3>诗歌</h3><span>Poetry</span></div>
+  <div class="grid">
+    <div class="card">
+      <div class="thumb c"><div class="t">诗</div></div>
+      <h4>九歌 · 独感</h4>
+      <div class="ex">以九歌为引，写孤独与山川。</div>
+    </div>
+    <div class="card">
+      <div class="thumb d"><div class="t">诗</div></div>
+      <h4>你</h4>
+      <div class="ex">写给某个遥远的名字。</div>
+    </div>
+    <div class="card">
+      <div class="thumb e"><div class="t">诗</div></div>
+      <h4>假如</h4>
+      <div class="ex">所有未曾发生的事。</div>
+    </div>
+  </div>
+
+  <div class="section"><h3>技术调研</h3><span>Research</span></div>
+  <div class="grid">
+    <div class="card">
+      <div class="thumb f"><div class="t">地热</div></div>
+      <h4>利用测井方法获得大地热流值</h4>
+      <div class="ex">从井温曲线到热流值反演的方法梳理。</div>
+    </div>
+    <div class="card">
+      <div class="thumb a"><div class="t">能源</div></div>
+      <h4>2026 中国地热能投资风向</h4>
+      <div class="ex">资本与政策如何重塑行业格局。</div>
+    </div>
+    <div class="card">
+      <div class="thumb b"><div class="t">传感</div></div>
+      <h4>分布式光纤传感综述</h4>
+      <div class="ex">DTS / DAS 在油气与地热的应用。</div>
+    </div>
+  </div>
+
+  <footer>
+    <span>如是我闻 · 编辑杂志风</span>
+    <span>由 Astro 构建</span>
+  </footer>
+</div>
+</body>
+</html>

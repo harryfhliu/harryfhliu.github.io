@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>如是我闻 · 黑金奢华风</title>
+<style>
+  :root{
+    --bg:#0a0a0a;
+    --bg2:#101010;
+    --gold:#c9a45c;
+    --gold-soft:#8a7442;
+    --fg:#eae6db;
+    --fg-2:#8f8a7d;
+    --serif:"Georgia","Songti SC","STSong",serif;
+    --sans:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--fg);font-family:var(--sans);line-height:1.8}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 40px}
+
+  .topbar{display:flex;justify-content:space-between;align-items:center;padding:26px 0;border-bottom:1px solid #2a2a26}
+  .topbar .brand{font-family:var(--serif);font-size:15px;letter-spacing:.5em;color:var(--gold)}
+  .topbar nav a{color:var(--fg-2);text-decoration:none;font-size:12px;letter-spacing:.2em;margin-left:28px}
+  .topbar nav a:hover{color:var(--gold)}
+
+  .hero{padding:110px 0 90px;text-align:center}
+  .hero .kicker{font-size:11px;letter-spacing:.55em;color:var(--gold-soft);margin-bottom:30px}
+  .hero h1{font-family:var(--serif);font-size:96px;font-weight:300;letter-spacing:.1em;line-height:1}
+  .hero .rule{width:1px;height:56px;background:linear-gradient(var(--gold),transparent);margin:34px auto 26px}
+  .hero p{font-family:var(--serif);font-size:16px;color:var(--fg-2);font-style:italic;letter-spacing:.05em}
+
+  .section{padding:20px 0 8px;display:flex;align-items:center;gap:18px}
+  .section .line{flex:1;height:1px;background:linear-gradient(90deg,#2a2a26,transparent)}
+  .section h3{font-family:var(--serif);font-size:13px;font-weight:400;letter-spacing:.4em;color:var(--gold);text-transform:uppercase}
+
+  .list{padding:10px 0 40px}
+  .item{display:flex;align-items:baseline;gap:26px;padding:20px 0;border-bottom:1px solid #1c1c18;cursor:pointer;transition:padding .25s}
+  .item:hover{padding-left:14px}
+  .item .date{font-size:11px;color:var(--gold-soft);letter-spacing:.15em;min-width:72px;font-variant-numeric:tabular-nums}
+  .item .t{font-family:var(--serif);font-size:21px;font-weight:400;flex:1}
+  .item:hover .t{color:var(--gold)}
+  .item .tag{font-size:11px;color:var(--fg-2);letter-spacing:.12em}
+
+  footer{margin-top:60px;padding:34px 0 60px;border-top:1px solid #2a2a26;display:flex;justify-content:space-between;font-size:11px;color:var(--fg-2);letter-spacing:.15em}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <span class="brand">如是我闻</span>
+    <nav>
+      <a>小说</a><a>诗歌</a><a>技术</a><a>关于</a>
+    </nav>
+  </div>
+
+  <div class="hero">
+    <div class="kicker">EVAṂ MAYĀ ŚRUTAM</div>
+    <h1>如是我闻</h1>
+    <div class="rule"></div>
+    <p>我是这样听闻的 —— 小说、诗歌与技术的长期观察</p>
+  </div>
+
+  <div class="section"><h3>小说</h3><span class="line"></span></div>
+  <div class="list">
+    <div class="item"><span class="date">2026·11</span><span class="t">致命唤醒</span><span class="tag">长篇 · 科幻</span></div>
+    <div class="item"><span class="date">2019·06</span><span class="t">人头游戏</span><span class="tag">短篇</span></div>
+    <div class="item"><span class="date">2017·03</span><span class="t">九渊归元录</span><span class="tag">仙侠</span></div>
+  </div>
+
+  <div class="section"><h3>诗歌</h3><span class="line"></span></div>
+  <div class="list">
+    <div class="item"><span class="date">2021·09</span><span class="t">九歌 · 独感</span><span class="tag">诗</span></div>
+    <div class="item"><span class="date">2020·12</span><span class="t">你</span><span class="tag">诗</span></div>
+    <div class="item"><span class="date">2019·04</span><span class="t">假如</span><span class="tag">诗</span></div>
+  </div>
+
+  <div class="section"><h3>技术调研</h3><span class="line"></span></div>
+  <div class="list">
+    <div class="item"><span class="date">2026·10</span><span class="t">十五五地热版图：31 省目标全景</span><span class="tag">地热</span></div>
+    <div class="item"><span class="date">2026·03</span><span class="t">2026 中国地热能投资风向</span><span class="tag">能源</span></div>
+    <div class="item"><span class="date">2025·11</span><span class="t">利用测井方法获得大地热流值</span><span class="tag">测井</span></div>
+    <div class="item"><span class="date">2025·08</span><span class="t">分布式光纤传感综述</span><span class="tag">传感</span></div>
+  </div>
+
+  <footer>
+    <span>如是我闻 · 黑金奢华风</span>
+    <span>由 Astro 构建</span>
+  </footer>
+</div>
+</body>
+</html>

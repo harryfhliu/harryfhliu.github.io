@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>如是我闻 · 模板对比画廊</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:#1a1a1a;color:#eee;font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;padding:28px}
+  h1{font-size:22px;font-weight:600;margin-bottom:6px}
+  .intro{font-size:14px;color:#aaa;margin-bottom:22px;line-height:1.6}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .cell{background:#0f0f0f;border:1px solid #333;border-radius:12px;overflow:hidden}
+  .cell .cap{padding:12px 16px;font-size:14px;font-weight:600;border-bottom:1px solid #2a2a2a;display:flex;align-items:center;gap:10px}
+  .cell .cap .no{display:inline-flex;width:22px;height:22px;border-radius:50%;background:#c9a45c;color:#111;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+  .cell iframe{width:100%;height:720px;border:0;background:#fff}
+  .foot{font-size:12px;color:#666;margin-top:18px}
+</style>
+</head>
+<body>
+  <h1>如是我闻 · 四套模板风格对比</h1>
+  <p class="intro">下面四套是完整渲染的真实效果（可各自滚动、悬停查看动效）。看完后告诉我你倾向的编号，或「混搭」——例如 1 的杂志排版 + 2 的黑金配色。选定后我会把它落地为正式主题。</p>
+
+  <div class="grid">
+    <div class="cell">
+      <div class="cap"><span class="no">1</span>编辑杂志风 · 米白底 + 赭红强调 + 超大衬线标题</div>
+      <iframe src="1-editorial.html" title="编辑杂志风"></iframe>
+    </div>
+    <div class="cell">
+      <div class="cap"><span class="no">2</span>黑金奢华风 · 纯黑底 + 香槟金细线 + 大量留白</div>
+      <iframe src="2-luxury-dark.html" title="黑金奢华风"></iframe>
+    </div>
+    <div class="cell">
+      <div class="cap"><span class="no">3</span>玻璃拟态风 · 深色光斑背景 + 毛玻璃卡片</div>
+      <iframe src="3-glassmorphism.html" title="玻璃拟态风"></iframe>
+    </div>
+    <div class="cell">
+      <div class="cap"><span class="no">4</span>新粗野主义风 · 奶油底 + 撞色块 + 硬阴影</div>
+      <iframe src="4-neo-brutalism.html" title="新粗野主义风"></iframe>
+    </div>
+  </div>
+
+  <p class="foot">四个页面也可单独点开全屏查看细节（右侧/上方文件卡片）。</p>
+</body>
+</html>
